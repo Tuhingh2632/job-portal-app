@@ -1,0 +1,32 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Resume</th>
+      </tr>
+    </thead>
+    <% if(applicants.length>0){ %> <% applicants.forEach((applicant)=>{%>
+    <tbody>
+      <tr>
+        <th scope="col"><%= applicant.applicantid %></th>
+        <th scope="col"><%= applicant.name %></th>
+        <th scope="col"><%= applicant.email %></th>
+        <th scope="col"><%= applicant.contact %></th>
+        <th scope="col">
+          <a
+            href="/<%=applicant.resumePath %>"
+            target="_blank"
+            type="btn"
+            class="btn btn-primary"
+            >Resume</a
+          >
+        </th>
+      </tr>
+    </tbody>
+    <% }) %> <% } %>
+  </table>
+</div>

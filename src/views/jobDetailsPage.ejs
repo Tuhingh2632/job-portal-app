@@ -1,0 +1,177 @@
+<% if(job){ %>
+<div class="container my-5">
+  <div class="card border-secondary bg-light border-5">
+    <img
+      src="/images/dream-job.webp"
+      class="card-img-top jobDetailsImg"
+      alt="jobDetailsImg"
+    />
+    <div class="card-body">
+      <h5 class="card-title text-center fs-2">
+        <span class="text-primary"><%=job.jobdesignation%></span>
+        oppertunity in <span class="text-success"><%=job.joblocation%></span>
+        at
+        <span class="text-danger"><%=job.companyname%></span>
+      </h5>
+      <% if(locals.userName){ %>
+      <div class="recruiter-action d-flex align-items-center my-2">
+        <h3>
+          <span class="badge bg-warning text-dark"
+            >Actively Hiring <i class="bi bi-graph-up-arrow"></i
+          ></span>
+        </h3>
+        <div class="actions mx-2">
+          <a href="/updateJob/<%= job.id %>" class="btn btn-primary">Update </a>
+          <button class="btn btn-danger" onclick="deleteJob('<%= job.id %>')">
+            Delete
+          </button>
+        </div>
+      </div>
+      <%} %>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item fs-3">
+          <b>Company Name</b> : <%= job.companyname %>
+        </li>
+        <li class="list-group-item fs-4">
+          <b>Role</b> : <%= job.jobdesignation %>
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-geo-fill"></i> <b>Location</b> : <%= job.joblocation
+          %>
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-currency-rupee"></i> <b>Salary</b> : <%= job.salary%>
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-hourglass-split"></i> <b>Apply By</b> : <%=
+          job.applyby%>
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-reception-4"></i> <b>Number of openings</b> : <%=
+          job.numberofopenings%>
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-people-fill"></i> <b>Applicants</b> : <%=
+          job.applicants.length %> <%if(locals.userName){%>
+          <a href="/jobs/<%=job.id%>/applicants" class="action-link"
+            ><i class="bi bi-person-lines-fill text-primary"
+              >View Applicants</i
+            ></a
+          >
+          <%}%>
+        </li>
+        <li class="list-group-item">
+          <b>Skills Required</b> : <% if(Array.isArray(job.skillsrequired)){ %>
+          <% job.skillsrequired.forEach((skill)=>{ %>
+          <span class="badge bg-secondary"><%= skill %></span>
+          <% }) %> <% }else{ %>
+          <span class="badge bg-secondary"><%= job.skillsrequired %></span>
+          <%}%>
+        </li>
+      </ul>
+      <div class="card-body">
+        <button
+          type="btn"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#applicantDetailsModal"
+        >
+          Apply Now
+        </button>
+        <h6 href="#" class="text mt-2">
+          <b>Posted on</b> : <%= job.jobposted%>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<div
+  class="modal fade"
+  id="applicantDetailsModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          Apply in less than a minute !!
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <%if(errorMessages){ %>
+        <div class="alert alert-danger" role="alert">*<%= errorMessages %></div>
+        <%}%>
+        <form
+          action="/apply/<%= job.id %>"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              id="exampleInputName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Email address:</label
+            >
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="contact" class="form-label">Contact:</label>
+            <input
+              type="number"
+              name="contact"
+              class="form-control"
+              id="exampleInputContact"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Resume:</label
+            >
+            <input
+              type="file"
+              name="file"
+              class="form-control"
+              id="exampleInputResume"
+              accept=".doc, .docx, .pdf"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            style="width: 100%"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

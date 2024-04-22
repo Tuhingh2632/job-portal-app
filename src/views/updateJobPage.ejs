@@ -1,0 +1,126 @@
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="card" style="width: 50rem">
+    <div class="card-body">
+      <%if(job){ %>
+
+      <form action="/updateJob" method="post" class="row g-3">
+        <h1 class="m-3 text-center">Update Job</h1>
+        <input
+          type="hidden"
+          class="form-control"
+          id="id"
+          name="id"
+          value="<%= job.id %>"
+        />
+        <div class="mb-2">
+          <label for="jobcategory" class="form-label"
+            >Select job category :</label
+          >
+          <select
+            class="form-select"
+            name="jobcategory"
+            aria-label="Default select example"
+          >
+            <option selected class="d-none"></option>
+            <option value="Tech">Tech</option>
+            <option value="Non tech">Non tech</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label for="jobdesignation" class="form-label"
+            >Select job designation :</label
+          >
+          <select
+            class="form-select"
+            name="jobdesignation"
+            aria-label="Default select example"
+          >
+            <option selected class="d-none"></option>
+            <option value="HR">HR</option>
+            <option value="SDE">SDE</option>
+            <option value="DevOps">DevOps</option>
+            <option value="MERN Developer">MERN Developer</option>
+            <option value="MEAN Developer">MEAN Developer</option>
+            <option value="JAVA Developer">JAVA Developer</option>
+            <option value="Front End Developer">Front End Developer</option>
+            <option value="Back End Developer">Back End Developer</option>
+            <option value="Full Stack Developer">Full Stack Developer</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-2">
+          <label for="companyname" class="form-label">Company Name :</label>
+          <input
+            type="text"
+            name="companyname"
+            class="form-control"
+            id="companyname"
+            value="<%=job.companyname %>"
+          />
+        </div>
+
+        <div class="col-md-6 mb-2">
+          <label for="location" class="form-label">Enter Job Location :</label>
+          <input
+            type="text"
+            name="joblocation"
+            class="form-control"
+            id="joblocation"
+            value="<%=job.joblocation %>"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputSalary" class="form-label">Salary : </label>
+          <input
+            type="text"
+            name="salary"
+            class="form-control"
+            id="salary"
+            value="<%=job.salary %>"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="inputPositions" class="form-label"
+            >Total Positions :
+          </label>
+          <input
+            type="number"
+            name="numberofopenings"
+            class="form-control"
+            id="numberofopenings"
+            value="<%=job.numberofopenings %>"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="skillsrequired" class="form-label"
+            >Skills Required :</label
+          >
+          <select
+            class="form-select"
+            name="skillsrequired"
+            multiple
+            aria-label="multiple select example"
+            id="skillsrequired"
+          >
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="Python">ReactJS</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="inputApplyby" class="form-label">Apply By :</label>
+          <input type="date" name="applyby" class="form-control" id="applyby" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%">
+          Update
+        </button>
+      </form>
+
+      <% } %>
+    </div>
+  </div>
+</div>

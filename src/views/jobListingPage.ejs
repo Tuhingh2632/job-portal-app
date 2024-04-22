@@ -1,0 +1,31 @@
+<div class="container d-flex justify-content-center flex-wrap mt-5">
+  <% if(jobs.length>0){ %> <% jobs.forEach((job)=>{ %>
+  <div
+    class="card border border-secondary bg-light border-2 mx-3 mb-4"
+    style="width: 18rem"
+  >
+    <div class="card-body">
+      <h5 class="card-title"><%= job.companyname %></h5>
+      <p class="card-text"><%= job.jobcategory %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Role : <%= job.jobdesignation %></li>
+      <li class="list-group-item">Location : <%= job.joblocation %></li>
+      <li class="list-group-item">Salary : <%= job.salary%></li>
+      <li class="list-group-item">
+        <b>Skills Required</b> : <% if(Array.isArray(job.skillsrequired)){ %> <%
+        job.skillsrequired.forEach((skill)=>{ %>
+        <span class="badge bg-secondary"><%= skill %></span>
+        <% }) %> <% }else{ %>
+        <span class="badge bg-secondary"><%= job.skillsrequired %></span>
+        <%}%>
+      </li>
+    </ul>
+    <div class="card-body">
+      <a href="/jobs/<%= job.id %>" class="btn btn-primary" style="width: 100%"
+        >View Details</a
+      >
+    </div>
+  </div>
+  <% }) %> <% } %>
+</div>

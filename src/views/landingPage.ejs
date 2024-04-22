@@ -1,0 +1,120 @@
+<!-- Landing Page -->
+<% console.log(errorMessage) %>
+<div id="hero" class="hero d-flex align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        <h1 data-aos="fade-up">A comprehensive platform for reliable</h1>
+        <h2 data-aos="fade-up" data-aos-delay="400">
+          job opportunities and internships
+        </h2>
+        <h6 data-aos="fade-up" data-aos-delay="400">
+          Get discovered and get hired
+        </h6>
+        <div data-aos="fade-up" data-aos-delay="600">
+          <div class="text-center text-lg-start">
+            <a href="/jobs" class="btn btn-primary btn-get-started mt-3">
+              <span>i'm A Job Seeker</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+            <% if(!locals.userName){ %>
+            <button
+              type="btn"
+              class="btn btn-primary btn-get-started mt-3"
+              data-bs-toggle="modal"
+              data-bs-target="#registerModal"
+            >
+              <span>i'm A Recruiter</span>
+              <i class="bi bi-arrow-right"></i>
+            </button>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+        <img src="/images/hero-img.png" class="img-fluid" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Register Modal -->
+
+<div
+  class="modal fade"
+  id="registerModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          Experience easily!!
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="closebtn()"
+          style="z-index: 99999999"
+        ></button>
+      </div>
+      <%if(errorMessage){ %>
+      <div class="alert alert-danger" role="alert">*<%= errorMessage %></div>
+      <%}%>
+      <div class="modal-body">
+        <form action="/register" method="post">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              id="exampleInputName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Email address:</label
+            >
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Password:</label
+            >
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            style="width: 100%"
+          >
+            Register
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-start">
+        <h5>Already registered?</h5>
+        <a type="button" class="btn btn-success" href="/login"> Login </a>
+      </div>
+    </div>
+  </div>
+</div>
